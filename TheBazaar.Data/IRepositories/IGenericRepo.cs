@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TheBazaar.Data.IRepositories;
 
-namespace TheBazaar.Data.IRepositories
+public interface IGenericRepo<TEntity>
 {
-    internal class IGenericRepo
-    {
-    }
+    Task<TEntity> CreateAsync(TEntity model);
+    Task<TEntity> UpdateAsync(TEntity model);
+    Task<bool> DeleteAsync(long id);
+    Task<TEntity> GetAsync(long id);
+    Task<List<TEntity>> GetAllAsync();
 }
