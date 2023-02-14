@@ -1,6 +1,6 @@
 ﻿namespace TheBazaar.Service.DTOs;
 
-public class Product
+public class ProductDto
 {
     public string Name { get; set; }
     public string Description { get; set; }

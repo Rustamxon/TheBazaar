@@ -7,7 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\TheBazaar.Domain\TheBazaar.Domain.csproj" />
   </ItemGroup>
 
 </Project>
+=======
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheBazaar.Data\TheBazaar.Data.csproj" />
+    <ProjectReference Include="..\TheBazaar.Domain\TheBazaar.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
+>>>>>>> 8e2831bb0efcea2292914b4fee0b6d5aa68fb20e
