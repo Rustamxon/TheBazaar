@@ -51,9 +51,21 @@ public class QuestionService : IQuestionService
         };
     }
 
-    public async Task<GenericResponse<List<Question>>> GetAllForAdminAsync(long userId)
+    public async Task<GenericResponse<List<Question>>> GetAllForAdminAsync()
     {
         var result = (await questionRepo.GetAllAsync()).FindAll(u => u.Progress == QuestionProgressType.Pending);
+
+        return new GenericResponse<List<Question>>
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Value = result
+        };
+    }
+
+    public async Task<GenericResponse<List<Question>>> GetAllUserQuestionsAsync(long userId)
+    {
+        var result = (await questionRepo.GetAllAsync()).FindAll(q => q.UserId == userId);
 
         return new GenericResponse<List<Question>>
         {

@@ -2,12 +2,8 @@
 
 public enum PaymentType : byte
 {
-    Click = 10,
+    Cash = 10,
     Payme = 20,
-    Apellsin = 30,
-    UzCard = 40,
-    Humo = 50,
-    Cash = 60,
-    MasterCard = 70,
-    VisaCard = 80
+    Click = 30,
+    UzCard = 40
 }

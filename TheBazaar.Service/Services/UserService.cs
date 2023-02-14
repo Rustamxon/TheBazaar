@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using TheBazaar.Data.IRepositories;
+﻿using TheBazaar.Data.IRepositories;
 using TheBazaar.Data.Repositories;
 using TheBazaar.Domain.Entities;
 using TheBazaar.Domain.Enums;
@@ -12,6 +11,7 @@ namespace TheBazaar.Service.Services;
 public class UserService : IUserService
 {
     private readonly IGenericRepo<User> userRepository = new GenericRepo<User>();
+    private readonly ICartService cartService = new CartService();
     public async Task<GenericResponse<User>> CheckLogin(string username, string password)
     {
         var users = await userRepository.GetAllAsync();
@@ -62,6 +62,8 @@ public class UserService : IUserService
         };
 
         var  result = await userRepository.CreateAsync(newUser);
+
+        await cartService.CreateAsync(result.Id);
 
         return new GenericResponse<User>
         {

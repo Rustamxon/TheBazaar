@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "Phone": "1",
+    "Username": "1",
+    "Password": "1",
+    "FirstName": "1",
+    "LastName": "1",
+    "Role": 10,
+    "Id": 1,
+    "CreatedAt": "2023-02-15T01:28:24.6019231+05:00",
+    "UpdatedAt": null
+  }
+]

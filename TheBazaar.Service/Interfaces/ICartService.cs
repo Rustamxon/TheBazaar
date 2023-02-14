@@ -10,4 +10,5 @@ public interface ICartService
     Task<GenericResponse<Cart>> CleareAsync(long userId);
     Task<GenericResponse<Cart>> UpdateAsync(Cart cart);
     Task<GenericResponse<Cart>> GetAsync(long userId);
+    Task<GenericResponse<decimal>> GetTotalPriceAsync(Cart cart);
 }
