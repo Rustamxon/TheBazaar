@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace TheBazaar.Domain.Enums
 {
-    public enum QuestionProgressType
+    public enum QuestionProgressType : byte
     {
-        sending = 1,
-        answered = 5,
-        completed = 10,
-        noasnwered = 15,
-        deleted = 20,
-        edited = 25
+        Pending = 10,
+        Answered = 20,
+        Closed = 30
     }
 }

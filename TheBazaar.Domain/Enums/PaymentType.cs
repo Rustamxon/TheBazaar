@@ -8,13 +8,13 @@ namespace TheBazaar.Domain.Enums
 {
     public enum PaymentType : byte
     {
-        Click = 5,
-        Payme = 10,
-        Apellsin = 15,
-        UzCard = 20,
-        Humo = 25,
-        Naqd = 30,
-        MasterCard = 35,
-        VisaCard = 40,
+        Click = 10,
+        Payme = 20,
+        Apellsin = 30,
+        UzCard = 40,
+        Humo = 50,
+        Cash = 60,
+        MasterCard = 70,
+        VisaCard = 80
     }
 }

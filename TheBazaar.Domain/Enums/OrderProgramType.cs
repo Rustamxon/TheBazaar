@@ -8,12 +8,10 @@ namespace TheBazaar.Domain.Enums
 {
     public enum OrderProgramType : byte
     {
-        Pending = 1,
-        Processing = 5,
-        Shipped = 10,
-        Delivered = 15,
-        Cancelled = 20,
-        Returned = 25,
-        Complete = 30,
+        Pending = 10,
+        Processing = 20,
+        Delivered = 30,
+        Complete = 40,
+        Cancelled = 50
     }
 }
