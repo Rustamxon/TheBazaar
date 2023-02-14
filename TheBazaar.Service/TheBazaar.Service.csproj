@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TheBazaar.Data\TheBazaar.Data.csproj" />
     <ProjectReference Include="..\TheBazaar.Domain\TheBazaar.Domain.csproj" />
   </ItemGroup>
 
