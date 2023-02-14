@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheBazaar.Data\TheBazaar.Data.csproj" />
+    <ProjectReference Include="..\TheBazaar.Domain\TheBazaar.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
