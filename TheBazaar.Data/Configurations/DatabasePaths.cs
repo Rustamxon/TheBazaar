@@ -7,4 +7,5 @@ public static class DatabasePaths
     public const string PRODUCT_PATH = "..\\..\\..\\..\\TheBazaar.Data\\Databases\\product.json";
     public const string QUESTION_PATH = "..\\..\\..\\..\\TheBazaar.Data\\Databases\\question.json";
     public const string USER_PATH = "..\\..\\..\\..\\TheBazaar.Data\\Databases\\user.json";
+    public const string CART_PATH = "..\\..\\..\\..\\TheBazaar.Data\\Databases\\cart.json";
 }
