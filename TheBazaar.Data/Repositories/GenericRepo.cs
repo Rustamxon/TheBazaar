@@ -34,7 +34,7 @@ namespace TheBazaar.Data.Repositories
             }
             else if (typeof(TEntity) == typeof(Order))
             {
-                Path = Configurations.DatabasePaths.USER_PATH;
+                Path = Configurations.DatabasePaths.ORDER_PATH;
             }
             else if (typeof(TEntity) == typeof(Question))
             {
@@ -43,6 +43,10 @@ namespace TheBazaar.Data.Repositories
             else if (typeof(TEntity) == typeof(Product))
             {
                 Path = Configurations.DatabasePaths.PRODUCT_PATH;
+            }
+            else if (typeof(TEntity) == typeof(Cart))
+            {
+                Path = Configurations.DatabasePaths.CART_PATH;
             }
 
             foreach (var model in await GetAllAsync())

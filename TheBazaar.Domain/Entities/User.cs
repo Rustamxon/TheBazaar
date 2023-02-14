@@ -10,6 +10,5 @@ public class User : Auditable
     public string Password { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public UserRole role { get; set; }
-    public List<string> LastFiveSearch { get; set; }
+    public UserRole Role { get; set; }
 }

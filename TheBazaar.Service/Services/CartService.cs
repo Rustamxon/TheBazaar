@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheBazaar.Data.IRepositories;
+﻿using TheBazaar.Data.IRepositories;
 using TheBazaar.Data.Repositories;
 using TheBazaar.Domain.Entities;
 using TheBazaar.Service.Helpers;
