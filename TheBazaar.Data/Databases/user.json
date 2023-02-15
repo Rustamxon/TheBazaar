@@ -1,13 +1,24 @@
 [
   {
-    "Phone": "3",
-    "Username": "3",
-    "Password": "3",
-    "FirstName": "3",
-    "LastName": "3",
+    "Phone": "777777777",
+    "Username": "otabeku7",
+    "Password": "1234",
+    "FirstName": "Otabek",
+    "LastName": "Umarov",
     "Role": 10,
     "Id": 1,
-    "CreatedAt": "2023-02-15T01:28:24.6019231+05:00",
-    "UpdatedAt": "2023-02-15T10:12:58.2962298Z"
+    "CreatedAt": "2023-02-16T02:42:01.7251919+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Phone": "930010101",
+    "Username": "admin",
+    "Password": "admin",
+    "FirstName": "Adminjon",
+    "LastName": "Adminjononv",
+    "Role": 20,
+    "Id": 2,
+    "CreatedAt": "2023-02-16T02:43:21.3014651+05:00",
+    "UpdatedAt": null
   }
 ]

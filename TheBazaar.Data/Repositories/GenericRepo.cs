@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using TheBazaar.Data.Configurations;
 using TheBazaar.Data.IRepositories;
 using TheBazaar.Domain.Commons;
 using TheBazaar.Domain.Entities;
@@ -26,27 +27,27 @@ namespace TheBazaar.Data.Repositories
         {
             if (typeof(TEntity) == typeof(Category))
             {
-                Path = Configurations.DatabasePaths.CATEGORY_PATH;
+                Path = DatabasePaths.CATEGORY_PATH;
             }
             else if (typeof(TEntity) == typeof(User)) 
             {
-                Path = Configurations.DatabasePaths.USER_PATH;
+                Path = DatabasePaths.USER_PATH;
             }
             else if (typeof(TEntity) == typeof(Order))
             {
-                Path = Configurations.DatabasePaths.ORDER_PATH;
+                Path = DatabasePaths.ORDER_PATH;
             }
             else if (typeof(TEntity) == typeof(Question))
             {
-                Path = Configurations.DatabasePaths.QUESTION_PATH;
+                Path = DatabasePaths.QUESTION_PATH;
             }
             else if (typeof(TEntity) == typeof(Product))
             {
-                Path = Configurations.DatabasePaths.PRODUCT_PATH;
+                Path = DatabasePaths.PRODUCT_PATH;
             }
             else if (typeof(TEntity) == typeof(Cart))
             {
-                Path = Configurations.DatabasePaths.CART_PATH;
+                Path = DatabasePaths.CART_PATH;
             }
 
             foreach (var model in await GetAllAsync())
@@ -83,19 +84,25 @@ namespace TheBazaar.Data.Repositories
             return true;
         }
 
-        public async Task<List<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync(Predicate<TEntity> predicate = null)
         {
             string text = File.ReadAllText(Path);
             if (string.IsNullOrEmpty(text))
             {
                 text = "[]";
             }
-            return JsonConvert.DeserializeObject<List<TEntity>>(text);     
+
+            var result = JsonConvert.DeserializeObject<List<TEntity>>(text);
+
+            if (predicate is null)
+                return result;
+
+            return result.FindAll(predicate);     
         }
 
         public async Task<TEntity> GetAsync(long id)
         {
-            return (await GetAllAsync()).FirstOrDefault(x => x.Id == id);
+            return (await GetAllAsync(x => x.Id == id)).FirstOrDefault();
         }
 
         public async Task<TEntity> UpdateAsync(TEntity model)

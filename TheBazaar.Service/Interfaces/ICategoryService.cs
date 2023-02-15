@@ -7,8 +7,8 @@ namespace TheBazaar.Service.Interfaces;
 public interface ICategoryService
 {
     Task<GenericResponse<Category>> CreateAsync(CategoryDto categoryDto);
-    Task<GenericResponse<Category>> DeleteAsync(string name);
-    Task<GenericResponse<Category>> UpdateAsync(string name, CategoryDto categoryDto);
-    Task<GenericResponse<Category>> GetAsync(string name);
-    Task<GenericResponse<List<Category>>> GetAllAsync();
+    Task<GenericResponse<Category>> DeleteAsync(long id);
+    Task<GenericResponse<Category>> UpdateAsync(long id, CategoryDto categoryDto);
+    Task<GenericResponse<Category>> GetAsync(long id);
+    Task<GenericResponse<List<Category>>> GetAllAsync(Predicate<Category> predicate);
 }

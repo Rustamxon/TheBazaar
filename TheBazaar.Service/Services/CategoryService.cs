@@ -15,7 +15,11 @@ namespace TheBazaar.Service.Services
 {
     public class CategoryService : ICategoryService
     {
-        private IGenericRepo<Category> genericRepo = new GenericRepo<Category>();
+        private IGenericRepo<Category> genericRepo;
+        public CategoryService()
+        {
+            genericRepo = new GenericRepo<Category>();
+        }
         public async Task<GenericResponse<Category>> CreateAsync(CategoryDto categoryDto)
         {
             var models = await this.genericRepo.GetAllAsync();
@@ -47,10 +51,9 @@ namespace TheBazaar.Service.Services
             };
         }
 
-        public async Task<GenericResponse<Category>> DeleteAsync(string name)
+        public async Task<GenericResponse<Category>> DeleteAsync(long id)
         {
-            var models = await this.genericRepo.GetAllAsync();
-            var model = models.FirstOrDefault(x => x.Name == name);
+            var model = await this.genericRepo.GetAsync(id);
 
             if (model is null)
             {
@@ -72,9 +75,9 @@ namespace TheBazaar.Service.Services
             };
         }
 
-        public async Task<GenericResponse<List<Category>>> GetAllAsync()
+        public async Task<GenericResponse<List<Category>>> GetAllAsync(Predicate<Category> predicate)
         {
-            var models = await genericRepo.GetAllAsync();
+            var models = await genericRepo.GetAllAsync(predicate);
             if (models is null)
             {
                 return new GenericResponse<List<Category>>
@@ -92,10 +95,9 @@ namespace TheBazaar.Service.Services
             };
         }
 
-        public async Task<GenericResponse<Category>> GetAsync(string name)
+        public async Task<GenericResponse<Category>> GetAsync(long id)
         {
-            var models = await this.genericRepo.GetAllAsync();
-            var model = models.FirstOrDefault(c => c.Name == name);
+            var model = await this.genericRepo.GetAsync(id);
             
             if (model is null)
             {
@@ -117,10 +119,9 @@ namespace TheBazaar.Service.Services
 
         }
 
-        public async Task<GenericResponse<Category>> UpdateAsync(string name, CategoryDto categoryDto)
+        public async Task<GenericResponse<Category>> UpdateAsync(long id, CategoryDto categoryDto)
         {
-            var models = await this.genericRepo.GetAllAsync();
-            var model = models.FirstOrDefault(x => x.Name == name);
+            var model = await this.genericRepo.GetAsync(id);
 
             if (model is null)
             {

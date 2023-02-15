@@ -123,7 +123,7 @@ public class CustomerInterface
     {
         Console.Clear();
 
-        var orders = await orderService.GetUsersAllOrdersAsync(customer.Id);
+        var orders = await orderService.GetAllAsync(o => o.UserId == customer.Id);
 
         if (orders.Value.Count == 0)
         {
@@ -174,13 +174,14 @@ public class CustomerInterface
         }
         else if (input1 == "2")
         {
-            var questions = (await questionService.GetAllUserQuestionsAsync(customer.Id)).Value.
+            var questions = (await questionService.GetAllAsync(q => q.UserId == customer.Id)).Value.
                 FindAll(q => q.Progress == QuestionProgressType.Answered);
 
             foreach (var que in questions)
             {
                 Console.WriteLine($"Question: {que.QuestionText}");
-                Console.WriteLine($"Answer: {que.AnswerText}\n");
+                Console.WriteLine($"Answer: {que.AnswerText}");
+                Console.WriteLine($"Answered at: {que.UpdatedAt}\n");
             }
             Console.WriteLine("Press ENTER to continue.");
             Console.ReadLine();
@@ -188,7 +189,7 @@ public class CustomerInterface
         }
         else if (input1 == "3")
         {
-            var questions = (await questionService.GetAllUserQuestionsAsync(customer.Id)).Value.
+            var questions = (await questionService.GetAllAsync(q => q.UserId == customer.Id)).Value.
                 FindAll(q => q.Progress == QuestionProgressType.Pending);
 
             foreach (var que in questions)
@@ -241,6 +242,8 @@ public class CustomerInterface
                     Console.WriteLine($"Amount: {products[i].Count} || Description: {products[i].Description}");
                     Console.WriteLine();
                 }
+                var totalPrice = (await cartService.GetTotalPriceAsync(cart)).Value;
+                Console.WriteLine($"Total price with delivering: {totalPrice}");
 
                 Console.WriteLine("1 - Remove product");
                 Console.WriteLine("2 - Change the count");
@@ -305,16 +308,16 @@ public class CustomerInterface
                 }
                 else if (input2 == "3")
                 {
-                    Start();
+                    MyCart();
                     break;
                 }
             }
         }
         else if (input == "2")
         {
-            var totalPrice = (await cartService.GetTotalPriceAsync(cart));
-            Console.WriteLine($"Total price with deleviring: {totalPrice}");
-            Console.WriteLine("Y/y to pay: ");
+            var totalPrice = (await cartService.GetTotalPriceAsync(cart)).Value;
+            Console.WriteLine($"Total price with delivering: {totalPrice}");
+            Console.Write("Y/y to pay: ");
             string payInput = Console.ReadLine();
 
             if (payInput.ToLower() == "y")
@@ -325,7 +328,7 @@ public class CustomerInterface
                 Console.WriteLine("3 - Click");
                 Console.WriteLine("4 - UzCard");
                 var payType = (PaymentType)(byte.Parse(Console.ReadLine()) * 10);
-                Console.WriteLine("Your address: ");
+                Console.Write("Your address: ");
                 string address = Console.ReadLine();
 
                 var response = await orderService.CreateAsync(new OrderDto

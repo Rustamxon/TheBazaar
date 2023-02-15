@@ -10,5 +10,6 @@ public interface IOrderService
     Task<GenericResponse<Order>> DeleteAsync(long id);
     Task<GenericResponse<Order>> UpdateAsync(long id, OrderDto order);
     Task<GenericResponse<Order>> GetAsync(long id);
-    Task<GenericResponse<List<Order>>> GetUsersAllOrdersAsync(long userId);
+    Task<GenericResponse<Order>> UpdateToNextProcessAsync(long id);
+    Task<GenericResponse<List<Order>>> GetAllAsync(Predicate<Order> predicate);
 }

@@ -11,5 +11,5 @@ public interface IUserService
     Task<GenericResponse<User>> UpdateAsync(long id, UserDto userDto);
     Task<GenericResponse<User>> GetAsync(long id);
     Task<GenericResponse<User>> CheckLogin(string username, string password);
-    Task<GenericResponse<List<User>>> GetAllAsync();
+    Task<GenericResponse<List<User>>> GetAllAsync(Predicate<User> predicate);
 }

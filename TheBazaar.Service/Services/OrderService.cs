@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TheBazaar.Data.IRepositories;
 using TheBazaar.Data.Repositories;
 using TheBazaar.Domain.Entities;
+using TheBazaar.Domain.Enums;
 using TheBazaar.Service.DTOs;
 using TheBazaar.Service.Helpers;
 using TheBazaar.Service.Interfaces;
@@ -14,21 +15,50 @@ namespace TheBazaar.Service.Services
 {
     public class OrderService : IOrderService
     {
-        private IGenericRepo<Order> orderRepo = new GenericRepo<Order>();
+        private IGenericRepo<Order> orderRepo;
+        private ICartService cartService;
+        private IProductService productService;
+        public OrderService() 
+        {
+            orderRepo = new GenericRepo<Order>();
+            cartService = new CartService();
+            productService = new ProductService();
+        }
         public async Task<GenericResponse<Order>> CreateAsync(OrderDto order)
         {
-            var orderCreate = (await orderRepo.GetAllAsync()).FirstOrDefault(p => p.UserId == order.UserId);
+            var mapped = new Order
+            {
+                Address = order.Address,
+                CreatedAt = DateTime.Now,
+                Items = order.Items,
+                PaymentType = order.PaymentType,
+                Progress = OrderProgressType.Pending,
+                UserId = order.UserId
+            };
 
-            if (orderCreate is not null)
-                return new GenericResponse<Order>
+            var result = await orderRepo.CreateAsync(mapped);
+
+            var cart = (await cartService.GetAsync(order.UserId)).Value;
+            cart.Items = new List<Product>();
+            await cartService.UpdateAsync(cart);
+
+            foreach (var pro in result.Items)
+            {
+                var rPro = (await productService.GetAsync(pro.Id)).Value;
+                rPro.Count -= pro.Count;
+
+                var mappedToDto = new ProductDto
                 {
-                    StatusCode= 405,
-                    Message = "Order is already created",
-                    Value = null
+                    CategoryId = rPro.CategoryId,
+                    Count = rPro.Count,
+                    Description = rPro.Description,
+                    Name = rPro.Name,
+                    Price = rPro.Price,
+                    SearchTags = rPro.SearchTags,
                 };
-            
-            orderCreate.CreatedAt = DateTime.UtcNow;
-            var result = await orderRepo.CreateAsync(orderCreate);
+
+                await productService.UpdateAsync(pro.Id, mappedToDto);
+            }
 
             return new GenericResponse<Order>
             {
@@ -86,9 +116,9 @@ namespace TheBazaar.Service.Services
             };
         }
 
-        public async Task<GenericResponse<List<Order>>> GetUsersAllOrdersAsync(long userId)
+        public async Task<GenericResponse<List<Order>>> GetAllAsync(Predicate<Order> predicate)
         {
-            var order = (await orderRepo.GetAllAsync()).FindAll(o => o.UserId == userId);
+            var order = await orderRepo.GetAllAsync(predicate);
             return new GenericResponse<List<Order>>
             {
                 StatusCode = 200,
@@ -113,7 +143,7 @@ namespace TheBazaar.Service.Services
             orderUpdate.Address = order.Address;
             orderUpdate.UserId = order.UserId;
             orderUpdate.Items = order.Items;
-            orderUpdate.UpdatedAt = DateTime.UtcNow;
+            orderUpdate.UpdatedAt = DateTime.Now;
             orderUpdate.PaymentType = order.PaymentType;
 
             var result = await orderRepo.UpdateAsync(orderUpdate);
@@ -122,6 +152,35 @@ namespace TheBazaar.Service.Services
             {
                 StatusCode = 200,
                 Message= "Order is succes updated",
+                Value = result
+            };
+        }
+
+        public async Task<GenericResponse<Order>> UpdateToNextProcessAsync(long id)
+        {
+            var order = (await GetAsync(id)).Value;
+
+            if (order is null)
+            {
+                return new GenericResponse<Order>
+                {
+                    StatusCode = 404,
+                    Message = "Not found",
+                    Value = null
+                };
+            }
+
+            if (order.Progress == OrderProgressType.Pending)
+                order.Progress = OrderProgressType.Processing;
+            else if (order.Progress == OrderProgressType.Processing)
+                order.Progress = OrderProgressType.Delivered;
+
+            var result = await orderRepo.UpdateAsync(order);
+
+            return new GenericResponse<Order>
+            {
+                StatusCode = 200,
+                Message = "Success",
                 Value = result
             };
         }

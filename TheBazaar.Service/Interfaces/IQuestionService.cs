@@ -10,6 +10,6 @@ public interface IQuestionService
     Task<GenericResponse<Question>> DeleteAsync(long id);
     Task<GenericResponse<Question>> UpdateAsync(Question question);
     Task<GenericResponse<Question>> GetAsync(long id);
-    Task<GenericResponse<List<Question>>> GetAllUserQuestionsAsync(long userId);
-    Task<GenericResponse<List<Question>>> GetAllForAdminAsync();
+    Task<GenericResponse<Question>> AsnwerAsync(long id, string answer);
+    Task<GenericResponse<List<Question>>> GetAllAsync(Predicate<Question> predicate);
 }

@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "Name": "Phones",
+    "Description": "Category of phones",
+    "Id": 1,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Laptop or PC",
+    "Description": "Laptos or personal computers",
+    "Id": 2,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Clothes",
+    "Description": "Some clothes",
+    "Id": 3,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Tools",
+    "Description": "Tools for housework",
+    "Id": 4,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": null
+  }
+]

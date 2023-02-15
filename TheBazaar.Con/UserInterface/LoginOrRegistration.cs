@@ -1,4 +1,5 @@
-﻿using TheBazaar.Service.DTOs;
+﻿using TheBazaar.Domain.Enums;
+using TheBazaar.Service.DTOs;
 using TheBazaar.Service.Interfaces;
 using TheBazaar.Service.Services;
 
@@ -33,8 +34,16 @@ public class LoginOrRegistration
 
         if (response.StatusCode == 200)
         {
-            var customerInterface = new CustomerInterface(response.Value);
-            customerInterface.Start();
+            if (response.Value.Role == UserRole.Customer)
+            {
+                var customerInterface = new CustomerInterface(response.Value);
+                customerInterface.Start();
+            }
+            else if (response.Value.Role == UserRole.Seller)
+            {
+                var sellerInterface = new SellerInterface(response.Value);
+                sellerInterface.Start();
+            }
         }
         else
         {

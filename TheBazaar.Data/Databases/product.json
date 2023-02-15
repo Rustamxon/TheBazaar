@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "Name": "IPhone 14 PRO MAX",
+    "Description": "Kuchli telefon",
+    "SearchTags": [
+      "smartphone",
+      "ayfon",
+      "apple",
+      "telefon",
+      "smartfon",
+      "telephone"
+    ],
+    "Price": 1300.0,
+    "Count": 10,
+    "CategoryId": 0,
+    "Id": 1,
+    "CreatedAt": "2023-02-15T20:51:24.7714743Z",
+    "UpdatedAt": "2023-02-16T01:54:17.6995303+05:00"
+  },
+  {
+    "Name": "IPhone 6S",
+    "Description": "Chiqasa bo'ladi",
+    "SearchTags": [
+      "phone",
+      "smartphone",
+      "ayfon",
+      "apple",
+      "smartfon",
+      "telefon"
+    ],
+    "Price": 350.0,
+    "Count": 5,
+    "CategoryId": 1,
+    "Id": 2,
+    "CreatedAt": "2023-02-15T20:52:43.7355777Z",
+    "UpdatedAt": null
+  }
+]
