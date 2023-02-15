@@ -27,6 +27,8 @@ public class CustomerInterface
         Console.WriteLine("2 - Recommendations");
         Console.WriteLine("3 - My cart");
         Console.WriteLine("4 - Questions");
+        Console.WriteLine("5 - My orders");
+        Console.WriteLine("6 - My profile");
 
         string input = Console.ReadLine();
 
@@ -46,10 +48,103 @@ public class CustomerInterface
         {
             Question();
         }
+        else if (input == "5")
+        {
+            MyOrders();
+        }
+        else if (input == "6")
+        {
+            MyProfile();
+        }
         else
         {
             Start();
         }
+    }
+    private async void MyProfile()
+    {
+        Console.Clear();
+        Console.WriteLine("First name: " + customer.FirstName);
+        Console.WriteLine("Last name: " + customer.LastName);
+        Console.WriteLine("Username: " + customer.Username);
+        Console.WriteLine("Password: " + customer.Password);
+        Console.WriteLine("Phone: " + customer.Phone);
+        Console.WriteLine("Updated at: " + customer.UpdatedAt);
+        Console.WriteLine("Created at: " + customer.CreatedAt);
+
+        Console.WriteLine();
+        Console.WriteLine("1 - Update profile");
+        Console.WriteLine("2 - Back");
+
+        string input = Console.ReadLine();
+
+        if (input == "1")
+        {
+            Console.Clear();
+
+            var infos = new UserDto();
+            Console.Write("First name: ");
+            infos.FirstName = Console.ReadLine();
+            Console.Write("Last name: ");
+            infos.LastName = Console.ReadLine();
+            Console.Write("Username: ");
+            infos.Username = Console.ReadLine();
+            Console.Write("Password: ");
+            infos.Password = Console.ReadLine();
+            Console.Write("Phone: ");
+            infos.Phone = Console.ReadLine();
+
+            var response = await userService.UpdateAsync(customer.Id, infos);
+
+            if (response.StatusCode == 200)
+            {
+                Console.Write("Successfully updated.");
+                customer = response.Value;
+            }
+            else
+            {
+                Console.Write("Something is wrong!");
+            }
+            Console.WriteLine(" Press ENTER to continue.");
+            Console.ReadLine();
+
+            MyProfile();
+        }
+        else if (input == "2")
+        {
+            Start();
+        }
+        else
+        {
+            MyProfile();
+        }
+    }
+    private async void MyOrders()
+    {
+        Console.Clear();
+
+        var orders = await orderService.GetUsersAllOrdersAsync(customer.Id);
+
+        if (orders.Value.Count == 0)
+        {
+            Console.WriteLine("You have not any order. Press ENTER to continue.");
+        }
+        else
+        {
+            foreach (var order in orders.Value)
+            {
+                Console.WriteLine($"Order progress: {order.Progress} Created at: {order.CreatedAt}");
+                Console.WriteLine("Ordered products:");
+                foreach (var prod in order.Items)
+                {
+                    Console.WriteLine($"Product name: {prod.Name} Number: {prod.Count}");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Press ENTER to continue.");
+        }
+        Console.ReadLine();
+        Start();
     }
     private async void Question()
     {
@@ -116,6 +211,8 @@ public class CustomerInterface
     }
     private async void MyCart()
     {
+        Console.Clear();
+
         var cart = (await cartService.GetAsync(customer.Id)).Value;
         var products = cart.Items;
 

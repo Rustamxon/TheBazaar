@@ -101,17 +101,16 @@ namespace TheBazaar.Data.Repositories
         public async Task<TEntity> UpdateAsync(TEntity model)
         {
             var models = await GetAllAsync();
-            var UpdatingModel = models.FirstOrDefault(x => x.Id == model.Id);
+            var updatingModel = models.FirstOrDefault(x => x.Id == model.Id);
 
-            if (UpdatingModel == null) 
+            if (updatingModel == null) 
                 return null;
             
-            int index = models.IndexOf(model);
+            int index = models.IndexOf(updatingModel);
 
-            models.Remove(UpdatingModel);
+            models.Remove(updatingModel);
 
-            model.CreatedAt = UpdatingModel.CreatedAt;
-            model.UpdatedAt = UpdatingModel.UpdatedAt;
+            model.CreatedAt = updatingModel.CreatedAt;
             models.Insert(index, model);
 
             File.WriteAllText(Path, JsonConvert.SerializeObject(models, Formatting.Indented));
