@@ -23,13 +23,13 @@ public class CustomerInterface
     public void Start()
     {
         Console.Clear();
-        Console.WriteLine("1 - Search");
-        Console.WriteLine("2 - Recommendations");
-        Console.WriteLine("3 - See all products");
-        Console.WriteLine("4 - Questions");
-        Console.WriteLine("5 - My cart");
-        Console.WriteLine("6 - My orders");
-        Console.WriteLine("7 - My profile");
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n                                            1 - Search");
+        Console.WriteLine("                                            2 - Recommendations");
+        Console.WriteLine("                                            3 - See all products");
+        Console.WriteLine("                                            4 - Questions");
+        Console.WriteLine("                                            5 - My cart");
+        Console.WriteLine("                                            6 - My orders");
+        Console.WriteLine("                                            7 - My profile");
 
         string input = Console.ReadLine();
 
@@ -73,7 +73,7 @@ public class CustomerInterface
 
         if (products.Count == 0)
         {
-            Console.WriteLine("Could not find anything. Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n                                            Could not find anything. Press ENTER to continue.");
             Console.ReadLine();
             Start();
         }
@@ -82,27 +82,27 @@ public class CustomerInterface
             while (true)
             {
                 Console.Clear();
-                for (int i = 0; i < products.Count; i++)
+                for (int i = 0; i < products.Count; i++)          
                 {
-                    Console.WriteLine($"Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
-                    Console.WriteLine($"Amount: {products[i].Count} || Description: {products[i].Description}");
+                    Console.WriteLine($"                              Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
+                    Console.WriteLine($"                              Amount: {products[i].Count} || Description: {products[i].Description}");
                     Console.WriteLine();
                 }
 
-                Console.WriteLine("1 - Add product to my cart");
-                Console.WriteLine("2 - Back to the menu");
+                Console.WriteLine("                                            1 - Add product to my cart");
+                Console.WriteLine("                                            2 - Back to the menu");
                 string input = Console.ReadLine();
 
                 if (input == "1")
                 {
-                    Console.Write("Product place number: ");
+                    Console.Write("                                            Product place number: ");
                     int placeNumber = int.Parse(Console.ReadLine());
-                    Console.Write("Count: ");
+                    Console.Write("                                            Count: ");
                     int count = int.Parse(Console.ReadLine());
 
                     if (placeNumber < 1 || placeNumber > products.Count || count > products[placeNumber - 1].Count)
                     {
-                        Console.WriteLine("Something is wrong! Press ENTER to continue.");
+                        Console.WriteLine("                                            Something is wrong! Press ENTER to continue.");
                         Console.ReadLine();
                     }
                     else
@@ -124,9 +124,9 @@ public class CustomerInterface
                             SearchTags = p.SearchTags,
                         });
 
-                        await cartService.UpdateAsync(cart);
+                        await cartService.UpdateAsync(cart);                    
 
-                        Console.WriteLine("Added successfully. Press ENTER to continue.");
+                        Console.WriteLine("                                            Added successfully. Press ENTER to continue.");
                         Console.ReadLine();
                     }
                 }
@@ -146,17 +146,17 @@ public class CustomerInterface
     private async void MyProfile()
     {
         Console.Clear();
-        Console.WriteLine("First name: " + customer.FirstName);
-        Console.WriteLine("Last name: " + customer.LastName);
-        Console.WriteLine("Username: " + customer.Username);
-        Console.WriteLine("Password: " + customer.Password);
-        Console.WriteLine("Phone: " + customer.Phone);
-        Console.WriteLine("Updated at: " + customer.UpdatedAt);
-        Console.WriteLine("Created at: " + customer.CreatedAt);
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n                                            First name: " + customer.FirstName);
+        Console.WriteLine("                                            Last name: " + customer.LastName);
+        Console.WriteLine("                                            Username: " + customer.Username);
+        Console.WriteLine("                                            Password: " + customer.Password);
+        Console.WriteLine("                                            Phone: " + customer.Phone);
+        Console.WriteLine("                                            Updated at: " + customer.UpdatedAt);
+        Console.WriteLine("                                            Created at: " + customer.CreatedAt);
 
         Console.WriteLine();
-        Console.WriteLine("1 - Update profile");
-        Console.WriteLine("2 - Back");
+        Console.WriteLine("                                            1 - Update profile");
+        Console.WriteLine("                                            2 - Back");
 
         string input = Console.ReadLine();
 
@@ -165,29 +165,29 @@ public class CustomerInterface
             Console.Clear();
 
             var infos = new UserDto();
-            Console.Write("First name: ");
+            Console.Write("\n\n\n\n\n\n\n\n\n\n                                            First name: ");
             infos.FirstName = Console.ReadLine();
-            Console.Write("Last name: ");
+            Console.Write("                                            Last name: ");
             infos.LastName = Console.ReadLine();
-            Console.Write("Username: ");
+            Console.Write("                                            Username: ");
             infos.Username = Console.ReadLine();
-            Console.Write("Password: ");
+            Console.Write("                                            Password: ");
             infos.Password = Console.ReadLine();
-            Console.Write("Phone: ");
+            Console.Write("                                            Phone: ");
             infos.Phone = Console.ReadLine();
 
             var response = await userService.UpdateAsync(customer.Id, infos);
 
             if (response.StatusCode == 200)
             {
-                Console.Write("Successfully updated.");
+                Console.Write("                                            Successfully updated.");
                 customer = response.Value;
             }
             else
             {
-                Console.Write("Something is wrong!");
+                Console.Write("                                            Something is wrong!");
             }
-            Console.WriteLine(" Press ENTER to continue.");
+            Console.WriteLine("                                            Press ENTER to continue.");
             Console.ReadLine();
 
             MyProfile();
@@ -209,21 +209,21 @@ public class CustomerInterface
 
         if (orders.Value.Count == 0)
         {
-            Console.WriteLine("You have not any order. Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n                                            You have not any order. Press ENTER to continue.");
         }
         else
         {
             foreach (var order in orders.Value)
             {
-                Console.WriteLine($"Order progress: {order.Progress} Created at: {order.CreatedAt}");
-                Console.WriteLine("Ordered products:");
+                Console.WriteLine($"\n\n\n\n\n\n\n\n\n\n                                            Order progress: {order.Progress} Created at: {order.CreatedAt}");
+                Console.WriteLine("                                            Ordered products:");
                 foreach (var prod in order.Items)
                 {
-                    Console.WriteLine($"Product name: {prod.Name} Number: {prod.Count}");
+                    Console.WriteLine($"                                            Product name: {prod.Name} Number: {prod.Count}");
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("Press ENTER to continue.");
+            Console.WriteLine("                                            Press ENTER to continue.");
         }
         Console.ReadLine();
         Start();
@@ -231,17 +231,17 @@ public class CustomerInterface
     private async void Question()
     {
         Console.Clear();
-        Console.WriteLine("1 - Give question");
-        Console.WriteLine("2 - Answered questions");
-        Console.WriteLine("3 - Not answered question");
-        Console.WriteLine("4 - Back");
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n                                            1 - Give question");
+        Console.WriteLine("                                            2 - Answered questions");
+        Console.WriteLine("                                            3 - Not answered question");
+        Console.WriteLine("                                            4 - Back");
 
         string input1 = Console.ReadLine();
 
         Console.Clear();
         if (input1 == "1")
         {
-            Console.Write("Your question: ");
+            Console.Write("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Your question: ");
             string questionText = Console.ReadLine();
 
             await questionService.CreateAsync(new QuestionDto
@@ -250,7 +250,7 @@ public class CustomerInterface
                 UserId = customer.Id
             });
 
-            Console.WriteLine("You will get your answer ASAP. Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            You will get your answer ASAP. Press ENTER to continue.");
             Console.ReadLine();
             Question();
         }
@@ -261,11 +261,11 @@ public class CustomerInterface
 
             foreach (var que in questions)
             {
-                Console.WriteLine($"Question: {que.QuestionText}");
-                Console.WriteLine($"Answer: {que.AnswerText}");
-                Console.WriteLine($"Answered at: {que.UpdatedAt}\n");
+                Console.WriteLine($"\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Question: {que.QuestionText}");
+                Console.WriteLine($"                                            Answer: {que.AnswerText}");
+                Console.WriteLine($"                                            Answered at: {que.UpdatedAt}\n");
             }
-            Console.WriteLine("Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Press ENTER to continue.");
             Console.ReadLine();
             Question();
         }
@@ -276,10 +276,10 @@ public class CustomerInterface
 
             foreach (var que in questions)
             {
-                Console.WriteLine($"Question: {que.QuestionText}");
-                Console.WriteLine($"Written time: {que.CreatedAt}\n");
+                Console.WriteLine($"                                                      Question: {que.QuestionText}");
+                Console.WriteLine($"                                                      Written time: {que.CreatedAt}\n");
             }
-            Console.WriteLine("Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Press ENTER to continue.");
             Console.ReadLine();
             Question();
         }
@@ -301,15 +301,15 @@ public class CustomerInterface
 
         if (products.Count == 0)
         {
-            Console.WriteLine("Your cart is empty. Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Your cart is empty. Press ENTER to continue.");
             Console.ReadLine();
             Start();
             return;
         }
 
-        Console.WriteLine("1 - All products in the cart");
-        Console.WriteLine("2 - Make order");
-        Console.WriteLine("3 - Back");
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            1 - All products in the cart");
+        Console.WriteLine("                                            2 - Make order");
+        Console.WriteLine("                                            3 - Back");
 
         var input = Console.ReadLine();
 
@@ -320,26 +320,26 @@ public class CustomerInterface
                 Console.Clear();
                 for (int i = 0; i < products.Count; i++)
                 {
-                    Console.WriteLine($"Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
-                    Console.WriteLine($"Amount: {products[i].Count} || Description: {products[i].Description}");
+                    Console.WriteLine($"                              Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
+                    Console.WriteLine($"                              Amount: {products[i].Count} || Description: {products[i].Description}");
                     Console.WriteLine();
                 }
                 var totalPrice = (await cartService.GetTotalPriceAsync(cart)).Value;
-                Console.WriteLine($"Total price with delivering: {totalPrice}");
+                Console.WriteLine($"                                            Total price with delivering: {totalPrice}");
 
-                Console.WriteLine("1 - Remove product");
-                Console.WriteLine("2 - Change the count");
-                Console.WriteLine("3 - Back");
+                Console.WriteLine("                                            1 - Remove product");
+                Console.WriteLine("                                            2 - Change the count");
+                Console.WriteLine("                                            3 - Back");
                 string input2 = Console.ReadLine();
 
                 if (input2 == "1")
                 {
-                    Console.Write("Product place number: ");
+                    Console.Write("                                            Product place number: ");
                     int placeNumber = int.Parse(Console.ReadLine());
 
                     if (placeNumber < 1 || placeNumber > products.Count)
                     {
-                        Console.WriteLine("Something is wrong! Press ENTER to continue.");
+                        Console.WriteLine("                                            Something is wrong! Press ENTER to continue.");
                         Console.ReadLine();
                     }
                     else
@@ -350,20 +350,20 @@ public class CustomerInterface
 
                         await cartService.UpdateAsync(cart);
 
-                        Console.WriteLine("Removed successfully. Press ENTER to continue.");
+                        Console.WriteLine("                                            Removed successfully. Press ENTER to continue.");
                         Console.ReadLine();
                     }
                 }
                 else if (input2 == "2")
                 {
-                    Console.Write("Product place number: ");
+                    Console.Write("                                            Product place number: ");
                     int placeNumber = int.Parse(Console.ReadLine());
-                    Console.Write("Count: ");
+                    Console.Write("                                            Count: ");
                     int count = int.Parse(Console.ReadLine());
 
                     if (placeNumber < 1 || placeNumber > products.Count)
                     {
-                        Console.WriteLine("Place number is wrong! Press ENTER to continue.");
+                        Console.WriteLine("                                            Place number is wrong! Press ENTER to continue.");
                         Console.ReadLine();
                     }
                     else
@@ -371,7 +371,7 @@ public class CustomerInterface
                         var productLive = (await productService.GetAsync(products[placeNumber - 1].Id)).Value;
                         if (productLive.Count < count)
                         {
-                            Console.WriteLine("No enough product! Press ENTER to continue.");
+                            Console.WriteLine("                                            No enough product! Press ENTER to continue.");
                             Console.ReadLine();
                         }
                         else
@@ -382,7 +382,7 @@ public class CustomerInterface
 
                             await cartService.UpdateAsync(cart);
 
-                            Console.WriteLine("Changed successfully. Press ENTER to continue.");
+                            Console.WriteLine("                                            Changed successfully. Press ENTER to continue.");
                             Console.ReadLine();
                         }
                     }
@@ -397,19 +397,19 @@ public class CustomerInterface
         else if (input == "2")
         {
             var totalPrice = (await cartService.GetTotalPriceAsync(cart)).Value;
-            Console.WriteLine($"Total price with delivering: {totalPrice}");
-            Console.Write("Y/y to pay: ");
+            Console.WriteLine($"                                            Total price with delivering: {totalPrice}");
+            Console.Write("                                            Y/y to pay: ");
             string payInput = Console.ReadLine();
 
             if (payInput.ToLower() == "y")
             {
                 Console.Clear();
-                Console.WriteLine("1 - Cash");
-                Console.WriteLine("2 - Payme");
-                Console.WriteLine("3 - Click");
-                Console.WriteLine("4 - UzCard");
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            1 - Cash");
+                Console.WriteLine("                                            2 - Payme");
+                Console.WriteLine("                                            3 - Click");
+                Console.WriteLine("                                            4 - UzCard");
                 var payType = (PaymentType)(byte.Parse(Console.ReadLine()) * 10);
-                Console.Write("Your address: ");
+                Console.Write("                                            Your address: ");
                 string address = Console.ReadLine();
 
                 var response = await orderService.CreateAsync(new OrderDto
@@ -420,7 +420,7 @@ public class CustomerInterface
                     UserId = customer.Id,
                     Items = cart.Items
                 });
-                Console.WriteLine("Your order is accepted. Press ENTER to continue.");
+                Console.WriteLine("                                            Your order is accepted. Press ENTER to continue.");
                 Console.ReadLine();
                 Start();
             }
@@ -446,7 +446,7 @@ public class CustomerInterface
 
         if (products.Count == 0)
         {
-            Console.WriteLine("Could not find anything. Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Could not find anything. Press ENTER to continue.");
             Console.ReadLine();
             Start();
         }
@@ -457,25 +457,25 @@ public class CustomerInterface
                 Console.Clear();
                 for (int i = 0; i < products.Count; i++)
                 {
-                    Console.WriteLine($"Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
-                    Console.WriteLine($"Amount: {products[i].Count} || Description: {products[i].Description}");
+                    Console.WriteLine($"                              Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
+                    Console.WriteLine($"                              Amount: {products[i].Count} || Description: {products[i].Description}");
                     Console.WriteLine();
                 }
 
-                Console.WriteLine("1 - Add product to my cart");
-                Console.WriteLine("2 - Back to the menu");
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            1 - Add product to my cart");
+                Console.WriteLine("                                            2 - Back to the menu");
                 string input = Console.ReadLine();
 
                 if (input == "1")
                 {
-                    Console.Write("Product place number: ");
+                    Console.Write("                                            Product place number: ");
                     int placeNumber = int.Parse(Console.ReadLine());
-                    Console.Write("Count: ");
+                    Console.Write("                                            Count: ");
                     int count = int.Parse(Console.ReadLine());
 
                     if (placeNumber < 1 || placeNumber > products.Count || count > products[placeNumber - 1].Count)
                     {
-                        Console.WriteLine("Something is wrong! Press ENTER to continue.");
+                        Console.WriteLine("                                            Something is wrong! Press ENTER to continue.");
                         Console.ReadLine();
                     }
                     else
@@ -499,7 +499,7 @@ public class CustomerInterface
 
                         await cartService.UpdateAsync(cart);
 
-                        Console.WriteLine("Added successfully. Press ENTER to continue.");
+                        Console.WriteLine("                                            Added successfully. Press ENTER to continue.");
                         Console.ReadLine();
                     }
                 }
@@ -514,22 +514,22 @@ public class CustomerInterface
     private async void Search()
     {
         Console.Clear();
-        Console.WriteLine("!!!Press ENTER to skip one of the filtering!!!");
+        Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            !!!Press ENTER to skip one of the filtering!!!");
 
-        Console.Write("Name: ");
+        Console.Write("                                            Name: ");
         string name = Console.ReadLine();
-        Console.Write("Category name: ");
+        Console.Write("                                            Category name: ");
         string categoryName = Console.ReadLine();
-        Console.Write("Min price: ");
+        Console.Write("                                            Min price: ");
         string minPrice = Console.ReadLine();
-        Console.Write("Max nprice: ");
+        Console.Write("                                            Max nprice: ");
         string maxPrice = Console.ReadLine();
 
         var response = await productService.SearchAsync(name, categoryName, minPrice, maxPrice);
 
         if (response.Value.Count == 0)
         {
-            Console.WriteLine("Could not find anything. Press ENTER to continue.");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Could not find anything. Press ENTER to continue.");
             Console.ReadLine();
             Start();
         }
@@ -541,25 +541,25 @@ public class CustomerInterface
                 var products = response.Value;
                 for (int i = 0; i < products.Count; i++)
                 {
-                    Console.WriteLine($"Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
-                    Console.WriteLine($"Amount: {products[i].Count} || Description: {products[i].Description}");
+                    Console.WriteLine($"                              Place number: {i + 1} || Name: {products[i].Name} || Price: {products[i].Price}");
+                    Console.WriteLine($"                              Amount: {products[i].Count} || Description: {products[i].Description}");
                     Console.WriteLine();
                 }
 
-                Console.WriteLine("1 - Add product to my cart");
-                Console.WriteLine("2 - Back to the menu");
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            1 - Add product to my cart");
+                Console.WriteLine("                                            2 - Back to the menu");
                 string input = Console.ReadLine();
 
                 if (input == "1")
                 {
-                    Console.Write("Product place number: ");
+                    Console.Write("                                            Product place number: ");
                     int placeNumber = int.Parse(Console.ReadLine());
-                    Console.Write("Count: ");
+                    Console.Write("                                            Count: ");
                     int count = int.Parse(Console.ReadLine());
 
                     if (placeNumber < 1 || placeNumber > products.Count || count > products[placeNumber - 1].Count)
                     {
-                        Console.WriteLine("Something is wrong! Press ENTER to continue.");
+                        Console.WriteLine("                                            Something is wrong! Press ENTER to continue.");
                         Console.ReadLine();
                     }
                     else
@@ -583,7 +583,7 @@ public class CustomerInterface
 
                         await cartService.UpdateAsync(cart);
 
-                        Console.WriteLine("Added successfully. Press ENTER to continue.");
+                        Console.WriteLine("                                            Added successfully. Press ENTER to continue.");
                         Console.ReadLine();
                     }
                 }

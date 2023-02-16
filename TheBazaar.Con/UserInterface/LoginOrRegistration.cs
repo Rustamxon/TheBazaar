@@ -35,7 +35,7 @@ public class LoginOrRegistration
     private async void Login()
     {
         Console.Clear();
-        Console.Write("                                            Username:");
+        Console.Write("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Username:");
         string username = Console.ReadLine();
         Console.Write("                                            Password: ");
         string password = Console.ReadLine();
@@ -67,7 +67,7 @@ public class LoginOrRegistration
         Console.Clear();
         var userDto = new UserDto();
         
-        Console.Write("                                            Phone: ");
+        Console.Write("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Phone: ");
         userDto.Phone = Console.ReadLine();
         Console.Write("                                            Username: ");
         userDto.Username = Console.ReadLine();
