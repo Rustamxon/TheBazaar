@@ -121,8 +121,9 @@ public class ProductService : IProductService
     public async Task<GenericResponse<Product>> CreateAsync(ProductDto product)
     {
         var model = (await this.genericRepo.GetAllAsync(x => x.Name == product.Name)).FirstOrDefault();
+        var category = (await categoryService.GetAsync(product.CategoryId)).Value;
 
-        if (model is not null)
+        if (model is not null || category is null)
         {
             return new GenericResponse<Product>
             {
