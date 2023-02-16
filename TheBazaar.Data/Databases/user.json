@@ -7,40 +7,7 @@
     "LastName": "1",
     "Role": 10,
     "Id": 1,
-    "CreatedAt": "2023-02-16T02:42:01.7251919+05:00",
-    "UpdatedAt": "2023-02-16T10:55:46.9738996+05:00"
-  },
-  {
-    "Phone": "930010101",
-    "Username": "admin",
-    "Password": "admin",
-    "FirstName": "Adminjon",
-    "LastName": "Adminjononv",
-    "Role": 20,
-    "Id": 2,
-    "CreatedAt": "2023-02-16T02:43:21.3014651+05:00",
-    "UpdatedAt": null
-  },
-  {
-    "Phone": "82382832832",
-    "Username": "mwkdamdw",
-    "Password": "kwdmkawmd",
-    "FirstName": "wmdkawmdkw",
-    "LastName": "wamkdmwkam",
-    "Role": 10,
-    "Id": 3,
-    "CreatedAt": "2023-02-16T10:31:33.3224832+05:00",
-    "UpdatedAt": null
-  },
-  {
-    "Phone": "87238232",
-    "Username": "knndajwndwa",
-    "Password": "jawndjawndjaw",
-    "FirstName": "jawndjanwdjnwa",
-    "LastName": "jwndjanwdjawndj",
-    "Role": 10,
-    "Id": 4,
-    "CreatedAt": "2023-02-16T10:50:29.0809128+05:00",
+    "CreatedAt": "2023-02-16T11:45:29.0633869+05:00",
     "UpdatedAt": null
   }
 ]
