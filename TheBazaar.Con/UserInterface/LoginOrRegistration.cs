@@ -8,16 +8,26 @@ namespace TheBazaar.Con.UserInterface;
 public class LoginOrRegistration
 {
     private IUserService userService = new UserService();
+
     public void Start()
     {
-        Console.Clear();
-        Console.WriteLine("1 - Login");
-        Console.WriteLine("2 - Registration");
-        string input = Console.ReadLine();
+        Console.ReadKey();
+        Console.BackgroundColor = ConsoleColor.Blue;
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.CursorVisible= false;
 
-        if (input == "1")
+        Console.Clear();
+        Console.WriteLine("\n\n\n\r\n\r\n                    \r\n                    ██████╗░██╗███╗░░██╗░█████╗░██████╗░██╗░░░██╗  ████████╗███████╗░█████╗░███╗░░░███╗\r\n                    ██╔══██╗██║████╗░██║██╔══██╗██╔══██╗╚██╗░██╔╝  ╚══██╔══╝██╔════╝██╔══██╗████╗░████║\r\n                    ██████╦╝██║██╔██╗██║███████║██████╔╝░╚████╔╝░  ░░░██║░░░█████╗░░███████║██╔████╔██║\r\n                    ██╔══██╗██║██║╚████║██╔══██║██╔══██╗░░╚██╔╝░░  ░░░██║░░░██╔══╝░░██╔══██║██║╚██╔╝██║\r\n                    ██████╦╝██║██║░╚███║██║░░██║██║░░██║░░░██║░░░  ░░░██║░░░███████╗██║░░██║██║░╚═╝░██║\r\n                    ╚═════╝░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░  ░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝\r\n\r\n                    ██████╗░██████╗░███████╗░██████╗███████╗███╗░░██╗████████╗░██████╗\r\n                    ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝████╗░██║╚══██╔══╝██╔════╝\r\n                    ██████╔╝██████╔╝█████╗░░╚█████╗░█████╗░░██╔██╗██║░░░██║░░░╚█████╗░\r\n                    ██╔═══╝░██╔══██╗██╔══╝░░░╚═══██╗██╔══╝░░██║╚████║░░░██║░░░░╚═══██╗\r\n                    ██║░░░░░██║░░██║███████╗██████╔╝███████╗██║░╚███║░░░██║░░░██████╔╝\r\n                    ╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚═════╝░");
+        Console.Beep(100, 2000);
+        Console.Clear();
+        Console.WriteLine("\n\n\n\n\n\n                     \r\n                    ██╗░░░░░░█████╗░░██████╗░██╗███╗░░██╗\r\n                    ██║░░░░░██╔══██╗██╔════╝░██║████╗░██║\r\n                    ██║░░░░░██║░░██║██║░░██╗░██║██╔██╗██║\r\n                    ██║░░░░░██║░░██║██║░░╚██╗██║██║╚████║\r\n                    ███████╗╚█████╔╝╚██████╔╝██║██║░╚███║\r\n                    ╚══════╝░╚════╝░░╚═════╝░╚═╝╚═╝░░╚══╝");
+        Console.WriteLine("                                                     \r\n                    ██████╗░███████╗░██████╗░██╗░██████╗████████╗██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗\r\n                    ██╔══██╗██╔════╝██╔════╝░██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║\r\n                    ██████╔╝█████╗░░██║░░██╗░██║╚█████╗░░░░██║░░░██████╔╝███████║░░░██║░░░██║██║░░██║██╔██╗██║\r\n                    ██╔══██╗██╔══╝░░██║░░╚██╗██║░╚═══██╗░░░██║░░░██╔══██╗██╔══██║░░░██║░░░██║██║░░██║██║╚████║\r\n                    ██║░░██║███████╗╚██████╔╝██║██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║\r\n                    ╚═╝░░╚═╝╚══════╝░╚═════╝░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝");
+        int input = Convert.ToInt32(Console.ReadKey().Key);
+
+
+        if (input == 49)
             Login();
-        else if (input == "2")
+        else if (input == 50)
             Registration();
         else 
             Start();
@@ -25,9 +35,9 @@ public class LoginOrRegistration
     private async void Login()
     {
         Console.Clear();
-        Console.Write("Username: ");
+        Console.Write("                                            Username:");
         string username = Console.ReadLine();
-        Console.Write("Password: ");
+        Console.Write("                                            Password: ");
         string password = Console.ReadLine();
 
         var response = await userService.CheckLogin(username, password);
@@ -47,7 +57,7 @@ public class LoginOrRegistration
         }
         else
         {
-            Console.WriteLine("Username or password was wrong! Press enter to continue.");
+            Console.WriteLine("                                            Username or password was wrong! Press enter to continue.");
             Console.ReadLine();
             this.Start();
         }
@@ -57,15 +67,15 @@ public class LoginOrRegistration
         Console.Clear();
         var userDto = new UserDto();
         
-        Console.Write("Phone: ");
+        Console.Write("                                            Phone: ");
         userDto.Phone = Console.ReadLine();
-        Console.Write("Username: ");
+        Console.Write("                                            Username: ");
         userDto.Username = Console.ReadLine();
-        Console.Write("Password: ");
+        Console.Write("                                            Password: ");
         userDto.Password = Console.ReadLine();
-        Console.Write("Firstname: ");
+        Console.Write("                                            Firstname: ");
         userDto.FirstName = Console.ReadLine();
-        Console.Write("Lastname: ");
+        Console.Write("                                            Lastname: ");
         userDto.LastName = Console.ReadLine();
 
         var response = await userService.CreateAsync(userDto);
@@ -77,7 +87,7 @@ public class LoginOrRegistration
         }
         else
         {
-            Console.WriteLine("Username was taken! Press enter to continue.");
+            Console.WriteLine("                                            Username was taken! Press enter to continue.");
             Console.ReadLine();
             this.Start();
         }

@@ -20,5 +20,27 @@
     "Id": 2,
     "CreatedAt": "2023-02-16T02:43:21.3014651+05:00",
     "UpdatedAt": null
+  },
+  {
+    "Phone": "82382832832",
+    "Username": "mwkdamdw",
+    "Password": "kwdmkawmd",
+    "FirstName": "wmdkawmdkw",
+    "LastName": "wamkdmwkam",
+    "Role": 10,
+    "Id": 3,
+    "CreatedAt": "2023-02-16T10:31:33.3224832+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Phone": "87238232",
+    "Username": "knndajwndwa",
+    "Password": "jawndjawndjaw",
+    "FirstName": "jawndjanwdjnwa",
+    "LastName": "jwndjanwdjawndj",
+    "Role": 10,
+    "Id": 4,
+    "CreatedAt": "2023-02-16T10:50:29.0809128+05:00",
+    "UpdatedAt": null
   }
 ]
