@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "Name": "Phones",
+    "Description": "Category of phones",
+    "Id": 1,
+    "CreatedAt": "2023-02-16T13:29:37.277158+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Laptop and PC",
+    "Description": "Category of laptops and PCs",
+    "Id": 2,
+    "CreatedAt": "2023-02-16T13:30:29.3946105+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Cars",
+    "Description": "Category of cars",
+    "Id": 3,
+    "CreatedAt": "2023-02-16T13:30:45.3681605+05:00",
+    "UpdatedAt": null
+  }
+]

@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "Items": [
+      {
+        "Name": "MacBook",
+        "Description": "The best laptop in the world!",
+        "SearchTags": [
+          "apple",
+          "laptop",
+          "pc",
+          "gaming",
+          "coding"
+        ],
+        "Price": 2300.0,
+        "Count": 1,
+        "CategoryId": 2,
+        "Id": 5,
+        "CreatedAt": "2023-02-16T13:38:39.3463089+05:00",
+        "UpdatedAt": null
+      },
+      {
+        "Name": "Chevrolet Spark",
+        "Description": "Little car",
+        "SearchTags": [
+          "car",
+          "automobile",
+          "avtomobil",
+          "moshina"
+        ],
+        "Price": 8000.0,
+        "Count": 2,
+        "CategoryId": 3,
+        "Id": 7,
+        "CreatedAt": "2023-02-16T13:41:01.4424932+05:00",
+        "UpdatedAt": null
+      }
+    ],
+    "UserId": 2,
+    "Address": "Tashkent",
+    "Progress": 30,
+    "PaymentType": 40,
+    "Id": 1,
+    "CreatedAt": "2023-02-16T13:44:05.0781573+05:00",
+    "UpdatedAt": null
+  }
+]

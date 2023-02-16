@@ -8,10 +8,14 @@ namespace TheBazaar.Service.Services
 {
     public class CartService : ICartService
     {
-        private IGenericRepo<Cart> CartRepo = new GenericRepo<Cart>();
+        private IGenericRepo<Cart> CartRepo;
+        public CartService()
+        {
+            CartRepo = new GenericRepo<Cart>();
+        }
         public async Task<GenericResponse<decimal>> GetTotalPriceAsync(Cart cart)
         {
-            decimal shippingPrice = 50_000;
+            decimal shippingPrice = 100;
 
             decimal totalPrice = 0;
 
@@ -27,30 +31,10 @@ namespace TheBazaar.Service.Services
                 Value = totalPrice + shippingPrice
             };
         }
-        public async Task<GenericResponse<Cart>> CleareAsync(long userId)
-        {
-            var cart = (await CartRepo.GetAllAsync()).FirstOrDefault(c => c.UserId == userId);
-            if (cart == null)
-                return new GenericResponse<Cart>()
-                {
-                    StatusCode = 404,
-                    Message = "Not Found",
-                    Value = null
-                };
-
-            cart.Items = new List<Product>();
-            cart.UpdatedAt = DateTime.UtcNow;
-            var result = await CartRepo.UpdateAsync(cart);
-            return new GenericResponse<Cart>
-            {
-                StatusCode = 200,
-                Message = "Succes",
-                Value = result    
-            };
-        }
         public async Task<GenericResponse<Cart>> CreateAsync(long userId)
         {
-            var cart = (await CartRepo.GetAllAsync()).FirstOrDefault(c => c.UserId == userId);
+            var cart = (await CartRepo.GetAllAsync(c => c.UserId == userId)).FirstOrDefault();
+
             if (cart is not null)
                 return new GenericResponse<Cart>
                 {
@@ -62,7 +46,7 @@ namespace TheBazaar.Service.Services
             var result = await CartRepo.CreateAsync(new Cart
             {
                 UserId = userId,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
                 Items = new List<Product>()
             });
 
@@ -76,7 +60,7 @@ namespace TheBazaar.Service.Services
 
         public async Task<GenericResponse<Cart>> GetAsync(long userId)
         {
-            var cart = (await CartRepo.GetAllAsync()).FirstOrDefault(c => c.UserId == userId);
+            var cart = (await CartRepo.GetAllAsync(c => c.UserId == userId)).FirstOrDefault();
 
             if (cart is null)
                 return new GenericResponse<Cart>
@@ -96,7 +80,7 @@ namespace TheBazaar.Service.Services
 
         public async Task<GenericResponse<Cart>> UpdateAsync(Cart cart)
         {
-            var cartUpdate = (await CartRepo.GetAllAsync()).FirstOrDefault(c => c.Id == cart.Id);
+            var cartUpdate = (await CartRepo.GetAllAsync(c => c.Id == cart.Id)).FirstOrDefault();
 
             if (cartUpdate is null)
                 return new GenericResponse<Cart>
@@ -106,7 +90,7 @@ namespace TheBazaar.Service.Services
                     Value = null
                 };
 
-            cart.UpdatedAt = DateTime.UtcNow;
+            cart.UpdatedAt = DateTime.Now;
             var result = await CartRepo.UpdateAsync(cart);
             
             return new GenericResponse<Cart>
@@ -114,6 +98,18 @@ namespace TheBazaar.Service.Services
                 StatusCode = 200,
                 Message = "Succes",
                 Value = result
+            };
+        }
+
+        public async Task<GenericResponse<List<Cart>>> GetAllAsync(Predicate<Cart> predicate)
+        {
+            var models = await CartRepo.GetAllAsync(predicate);
+
+            return new GenericResponse<List<Cart>>
+            {
+                StatusCode = 200,
+                Message = "Success",
+                Value = models
             };
         }
     }

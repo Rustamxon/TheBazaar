@@ -9,21 +9,31 @@ namespace TheBazaar.Service.Services;
 
 public class ProductService : IProductService
 {
-    private IGenericRepo<Product> genericRepo = new GenericRepo<Product>();
-    private ICategoryService categoryService = new CategoryService();
-    private IOrderService orderService = new OrderService();
-    private ICartService cartService = new CartService();
-
+    private IGenericRepo<Product> genericRepo;
+    private ICategoryService categoryService;
+    private IGenericRepo<Order> orderRepo;
+    private ICartService cartService;
+    public ProductService()
+    {
+        genericRepo = new GenericRepo<Product>();
+        categoryService = new CategoryService();
+        cartService = new CartService();
+        orderRepo = new GenericRepo<Order>();
+    }
     public async Task<GenericResponse<List<Product>>> RecommendationsAsync(User user)
     {
         var keys = new List<string>();
         var result = new List<Product>();
 
-        foreach (var i in (await orderService.GetUsersAllOrdersAsync(user.Id)).Value)
+        foreach (var i in await orderRepo.GetAllAsync(o => o.UserId == user.Id))
         {
             foreach (var j in i.Items)
             {
                 keys.Add(j.Name);
+                foreach (var k in j.SearchTags)
+                {
+                    keys.Add(k);
+                }
             }
         }
 
@@ -32,10 +42,13 @@ public class ProductService : IProductService
             keys.Add(i.Name);
         }
 
-        foreach (var pro in (await GetAllAsync()).Value)
+        foreach (var pro in (await GetAllAsync(p => true)).Value)
         {
+
             foreach (var key in keys)
             {
+                if (result.Exists(p => p == pro))
+                    break;
                 if (pro.Name.ToLower().Contains(key.ToLower()) || CheckTags(pro, key))
                     result.Add(pro);
             }
@@ -63,7 +76,7 @@ public class ProductService : IProductService
     public async Task<GenericResponse<List<Product>>> SearchAsync
         (string name, string categoryName, string minPrice, string maxPrice)
     {
-        var products = (await GetAllAsync()).Value;
+        var products = (await GetAllAsync(p => true)).Value;
 
         var result = new List<Product>();
 
@@ -71,18 +84,13 @@ public class ProductService : IProductService
         {
             if (!string.IsNullOrEmpty(name))
             {
-                if (!product.Name.ToLower().Contains(name.ToLower()))
-                    continue;
-
-                if (!CheckTags(product, name))
+                if (!product.Name.ToLower().Contains(name.ToLower()) && !CheckTags(product, name))
                     continue;
             }
 
             if (!string.IsNullOrEmpty(categoryName))
             {
-                var response = await categoryService.GetAsync(categoryName);
-
-                if (!response.Value.Name.ToLower().Contains(categoryName) && response.StatusCode != 404)
+                if ((await categoryService.GetAllAsync(p => p.Name.ToLower().Contains(categoryName.ToLower()))).Value.FirstOrDefault() is null)
                     continue;
             }
 
@@ -110,15 +118,15 @@ public class ProductService : IProductService
     }
     public async Task<GenericResponse<Product>> CreateAsync(ProductDto product)
     {
-        var models = await this.genericRepo.GetAllAsync();
-        var model = models.FirstOrDefault(x => x.Name == product.Name);
+        var model = (await this.genericRepo.GetAllAsync(x => x.Name == product.Name)).FirstOrDefault();
+        var category = (await categoryService.GetAsync(product.CategoryId)).Value;
 
-        if (model is not null)
+        if (model is not null || category is null)
         {
             return new GenericResponse<Product>
             {
-                StatusCode = 404,
-                Message = "This category is already exist",
+                StatusCode = 405,
+                Message = "This product is already exists",
                 Value = null,
             };
         }
@@ -130,6 +138,8 @@ public class ProductService : IProductService
             SearchTags = product.SearchTags,
             Price = product.Price,
             Count = product.Count,
+            CategoryId = product.CategoryId,
+            CreatedAt = DateTime.Now
         };
 
         await genericRepo.CreateAsync(mappedModel);
@@ -167,22 +177,14 @@ public class ProductService : IProductService
         };
     }
 
-    public async Task<GenericResponse<List<Product>>> GetAllAsync()
+    public async Task<GenericResponse<List<Product>>> GetAllAsync(Predicate<Product> predicate)
     {
-        var models = await genericRepo.GetAllAsync();
-        if (models is null)
-        {
-            return new GenericResponse<List<Product>>
-            {
-                StatusCode = 404,
-                Message = "Empty",
-                Value = null,
-            };
-        }
+        var models = await genericRepo.GetAllAsync(predicate);
+
         return new GenericResponse<List<Product>>
         {
             StatusCode = 200,
-            Message = "Ok",
+            Message = "Success",
             Value = models,
         };
     }

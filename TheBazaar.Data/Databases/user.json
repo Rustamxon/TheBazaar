@@ -1,13 +1,24 @@
 [
   {
-    "Phone": "3",
-    "Username": "3",
-    "Password": "3",
-    "FirstName": "3",
-    "LastName": "3",
-    "Role": 10,
+    "Phone": "7",
+    "Username": "admin",
+    "Password": "admin",
+    "FirstName": "Adminjon",
+    "LastName": "Adminjonov",
+    "Role": 20,
     "Id": 1,
-    "CreatedAt": "2023-02-15T01:28:24.6019231+05:00",
-    "UpdatedAt": "2023-02-15T10:12:58.2962298Z"
+    "CreatedAt": "2023-02-16T13:20:33.4989926+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Phone": "950137013",
+    "Username": "FindAbdulloh",
+    "Password": "1234",
+    "FirstName": "Abdulloh",
+    "LastName": "Axmadjonov",
+    "Role": 10,
+    "Id": 2,
+    "CreatedAt": "2023-02-16T13:22:18.1365187+05:00",
+    "UpdatedAt": "2023-02-16T13:27:26.755884+05:00"
   }
 ]

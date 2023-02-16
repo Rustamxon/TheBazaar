@@ -10,7 +10,37 @@ namespace TheBazaar.Service.Services;
 
 public class QuestionService : IQuestionService
 {
-    private IGenericRepo<Question> questionRepo = new GenericRepo<Question>();
+    private IGenericRepo<Question> questionRepo;
+    public QuestionService()
+    {
+        questionRepo = new GenericRepo<Question>();
+    }
+
+    public async Task<GenericResponse<Question>> AsnwerAsync(long id, string answer)
+    {
+        var question = (await GetAsync(id)).Value;
+
+        if (question is null)
+            return new GenericResponse<Question>
+            {
+                StatusCode = 404,
+                Message = "Not found",
+                Value = null
+            };
+
+        question.AnswerText = answer;
+        question.Progress = QuestionProgressType.Answered;
+
+        var result = (await UpdateAsync(question)).Value;
+
+        return new GenericResponse<Question>
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Value = result
+        };
+    }
+
     public async Task<GenericResponse<Question>> CreateAsync(QuestionDto question)
     {
         var que = new Question
@@ -51,21 +81,9 @@ public class QuestionService : IQuestionService
         };
     }
 
-    public async Task<GenericResponse<List<Question>>> GetAllForAdminAsync()
+    public async Task<GenericResponse<List<Question>>> GetAllAsync(Predicate<Question> predicate)
     {
-        var result = (await questionRepo.GetAllAsync()).FindAll(u => u.Progress == QuestionProgressType.Pending);
-
-        return new GenericResponse<List<Question>>
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Value = result
-        };
-    }
-
-    public async Task<GenericResponse<List<Question>>> GetAllUserQuestionsAsync(long userId)
-    {
-        var result = (await questionRepo.GetAllAsync()).FindAll(q => q.UserId == userId);
+        var result = await questionRepo.GetAllAsync(predicate);
 
         return new GenericResponse<List<Question>>
         {

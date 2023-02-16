@@ -10,8 +10,13 @@ namespace TheBazaar.Service.Services;
 
 public class UserService : IUserService
 {
-    private readonly IGenericRepo<User> userRepository = new GenericRepo<User>();
-    private readonly ICartService cartService = new CartService();
+    private readonly IGenericRepo<User> userRepository;
+    private readonly ICartService cartService;
+    public UserService()
+    {
+        userRepository = new GenericRepo<User>();
+        cartService = new CartService();
+    }
     public async Task<GenericResponse<User>> CheckLogin(string username, string password)
     {
         var users = await userRepository.GetAllAsync();
@@ -61,7 +66,7 @@ public class UserService : IUserService
             Role = UserRole.Customer
         };
 
-        var  result = await userRepository.CreateAsync(newUser);
+        var result = await userRepository.CreateAsync(newUser);
 
         await cartService.CreateAsync(result.Id);
 
@@ -92,9 +97,9 @@ public class UserService : IUserService
         };
     }
 
-    public async Task<GenericResponse<List<User>>> GetAllAsync()
+    public async Task<GenericResponse<List<User>>> GetAllAsync(Predicate<User> predicate)
     {
-        var result = await this.userRepository.GetAllAsync();
+        var result = await this.userRepository.GetAllAsync(predicate);
         return new GenericResponse<List<User>>()
         {
             StatusCode = 200,
@@ -153,7 +158,7 @@ public class UserService : IUserService
         user.Phone = userDto.Phone;
         user.Username = userDto.Username;
         user.Password = userDto.Password;
-        user.UpdatedAt = DateTime.UtcNow;
+        user.UpdatedAt = DateTime.Now;
         var result = await userRepository.UpdateAsync(user);
 
         return new GenericResponse<User>
