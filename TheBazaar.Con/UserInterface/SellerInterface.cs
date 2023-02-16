@@ -67,7 +67,7 @@ public class SellerInterface
         {
             Console.WriteLine($"ID: {que.Id} || Question: {que.QuestionText}");
         }
-        Console.WriteLine("1 - Answer question");
+        Console.WriteLine("\n1 - Answer question");
         Console.WriteLine("2 - Back");
 
         string inp = Console.ReadLine();
@@ -125,7 +125,7 @@ public class SellerInterface
 
             var response = await categoryService.CreateAsync(catDto);
 
-            Console.WriteLine("" + response.Message + ". Press ENTER to continue.");
+            Console.WriteLine(response.Message + ". Press ENTER to continue.");
             Console.ReadLine();
             Categories();
         }
@@ -206,7 +206,7 @@ public class SellerInterface
 
             var response = await productService.CreateAsync(prodDto);
 
-            Console.WriteLine(""+response.Message + ". Press ENTER to continue.");
+            Console.WriteLine(response.Message + ". Press ENTER to continue.");
             Console.ReadLine();
             Products();
         }
@@ -233,7 +233,7 @@ public class SellerInterface
 
             var response = await productService.UpdateAsync(prodId, prodDto);
 
-            Console.WriteLine("" + response.Message + ". Press ENTER to continue.");
+            Console.WriteLine(response.Message + ". Press ENTER to continue.");
             Console.ReadLine();
             Products();
         }
@@ -248,11 +248,11 @@ public class SellerInterface
 
             if (response.StatusCode == 200)
             {
-                Console.WriteLine("\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"+Successfully deleted. Press ENTER to continue.");
+                Console.WriteLine("Successfully deleted. Press ENTER to continue.");
             }
             else
             {
-                Console.WriteLine("\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"+Could not find! Press ENTER to continue.");
+                Console.WriteLine("Could not find! Press ENTER to continue.");
             }
             Console.ReadLine();
             Products();
@@ -261,7 +261,7 @@ public class SellerInterface
         {
             Console.Clear();
 
-            Console.Write("\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"+Enter ID of the product: ");
+            Console.Write("Enter ID of the product: ");
             long prodId = long.Parse(Console.ReadLine());
 
             var response = await productService.GetAsync(prodId);
@@ -270,7 +270,7 @@ public class SellerInterface
             {
                 var prod = response.Value;
 
-                Console.WriteLine("\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"+Name: " + prod.Name);
+                Console.WriteLine("Name: " + prod.Name);
                 Console.WriteLine("Description: " + prod.Description);
                 Console.WriteLine("Price: " + prod.Price);
                 Console.WriteLine("Count: " + prod.Count);
@@ -301,8 +301,8 @@ public class SellerInterface
             foreach (var prod in products)
             {
                 Console.WriteLine($"ID: {prod.Id} || Name: {prod.Name} || Price: {prod.Price} || Count: {prod.Count}");
-                Console.WriteLine($"Category: {prod.CategoryId} || Description: {prod.Description}");
-                Console.WriteLine($"Created at: {prod.CreatedAt} Updated at: {prod.UpdatedAt}\n");
+                Console.WriteLine($"Category ID: {prod.CategoryId} || Description: {prod.Description}");
+                Console.WriteLine($"Created at: {prod.CreatedAt} || Updated at: {prod.UpdatedAt}\n");
             }
             Console.WriteLine("Press ENTER to continue.");
             Console.ReadLine();
