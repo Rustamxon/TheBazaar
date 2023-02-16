@@ -1,14 +1,14 @@
 [
   {
-    "Phone": "777777777",
-    "Username": "otabeku7",
-    "Password": "1234",
-    "FirstName": "Otabek",
-    "LastName": "Umarov",
+    "Phone": "1",
+    "Username": "1",
+    "Password": "1",
+    "FirstName": "1",
+    "LastName": "1",
     "Role": 10,
     "Id": 1,
     "CreatedAt": "2023-02-16T02:42:01.7251919+05:00",
-    "UpdatedAt": null
+    "UpdatedAt": "2023-02-16T10:55:46.9738996+05:00"
   },
   {
     "Phone": "930010101",

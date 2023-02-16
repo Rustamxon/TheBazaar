@@ -44,8 +44,11 @@ public class ProductService : IProductService
 
         foreach (var pro in (await GetAllAsync(p => true)).Value)
         {
+
             foreach (var key in keys)
             {
+                if (result.Exists(p => p == pro))
+                    break;
                 if (pro.Name.ToLower().Contains(key.ToLower()) || CheckTags(pro, key))
                     result.Add(pro);
             }

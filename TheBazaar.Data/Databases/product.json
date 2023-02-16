@@ -29,10 +29,10 @@
       "telefon"
     ],
     "Price": 350.0,
-    "Count": 5,
-    "CategoryId": 1,
+    "Count": 2,
+    "CategoryId": 0,
     "Id": 2,
     "CreatedAt": "2023-02-15T20:52:43.7355777Z",
-    "UpdatedAt": null
+    "UpdatedAt": "2023-02-16T10:55:28.2231556+05:00"
   }
 ]
