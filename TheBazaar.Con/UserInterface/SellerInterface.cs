@@ -65,7 +65,7 @@ public class SellerInterface
 
         foreach (var que in questions)
         {
-            Console.WriteLine($"ID: {que.Id} || Question: {que.QuestionText}");
+            Console.WriteLine($"                                            ID: {que.Id} || Question: {que.QuestionText}");
         }
         Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            1 - Answer question");
         Console.WriteLine("                                            2 - Back");
