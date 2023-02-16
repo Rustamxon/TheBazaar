@@ -90,9 +90,7 @@ public class ProductService : IProductService
 
             if (!string.IsNullOrEmpty(categoryName))
             {
-                var response = (await categoryService.GetAllAsync(p => p.Name.ToLower() == categoryName.ToLower())).Value.FirstOrDefault();
-
-                if (response is not null && !response.Name.ToLower().Contains(categoryName))
+                if ((await categoryService.GetAllAsync(p => p.Name.ToLower().Contains(categoryName.ToLower()))).Value.FirstOrDefault() is null)
                     continue;
             }
 
