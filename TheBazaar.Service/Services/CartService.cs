@@ -15,7 +15,7 @@ namespace TheBazaar.Service.Services
         }
         public async Task<GenericResponse<decimal>> GetTotalPriceAsync(Cart cart)
         {
-            decimal shippingPrice = 50_000;
+            decimal shippingPrice = 100;
 
             decimal totalPrice = 0;
 

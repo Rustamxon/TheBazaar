@@ -30,7 +30,7 @@ namespace TheBazaar.Service.Services
                 return new GenericResponse<Category>
                 {
                     StatusCode = 404,
-                    Message = "This category is already exist",
+                    Message = "This category is already exists",
                     Value = null,
                 };
             }
@@ -38,7 +38,8 @@ namespace TheBazaar.Service.Services
             var mappedModel = new Category()
             {
                 Name = categoryDto.Name,
-                Description = categoryDto.Description
+                Description = categoryDto.Description,
+                CreatedAt = DateTime.Now
             };
 
             await genericRepo.CreateAsync(mappedModel);

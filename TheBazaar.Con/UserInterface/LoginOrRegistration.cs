@@ -35,7 +35,7 @@ public class LoginOrRegistration
     private async void Login()
     {
         Console.Clear();
-        Console.Write("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Username:");
+        Console.Write("\n\n\n\n\n\n\n\n\n\n\n\n\n                                            Username: ");
         string username = Console.ReadLine();
         Console.Write("                                            Password: ");
         string password = Console.ReadLine();

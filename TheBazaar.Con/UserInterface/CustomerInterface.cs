@@ -180,14 +180,14 @@ public class CustomerInterface
 
             if (response.StatusCode == 200)
             {
-                Console.Write("                                            Successfully updated.");
+                Console.Write("\n                                            Successfully updated.");
                 customer = response.Value;
             }
             else
             {
-                Console.Write("                                            Something is wrong!");
+                Console.Write("\n                                            Something is wrong!");
             }
-            Console.WriteLine("                                            Press ENTER to continue.");
+            Console.WriteLine("\n                                            Press ENTER to continue.");
             Console.ReadLine();
 
             MyProfile();

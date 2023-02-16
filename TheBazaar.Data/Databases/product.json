@@ -1,1 +1,118 @@
-[]
+[
+  {
+    "Name": "IPhone 14 PRO",
+    "Description": "Amazing phone",
+    "SearchTags": [
+      "telefon",
+      "telephone",
+      "smartphone",
+      "apple",
+      ""
+    ],
+    "Price": 1200.0,
+    "Count": 10,
+    "CategoryId": 1,
+    "Id": 1,
+    "CreatedAt": "2023-02-16T13:33:27.3047277+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Samsung S23 Ultra",
+    "Description": "Kamerasi zo'r",
+    "SearchTags": [
+      "telefon",
+      "galaxy",
+      "telephone",
+      "smartphone",
+      "smartfon"
+    ],
+    "Price": 1700.0,
+    "Count": 12,
+    "CategoryId": 1,
+    "Id": 2,
+    "CreatedAt": "2023-02-16T13:34:47.1810112+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "IPhone 6S",
+    "Description": "Yaxshi telefon",
+    "SearchTags": [
+      "telefon",
+      "smartphone",
+      "apple",
+      "telephone"
+    ],
+    "Price": 350.0,
+    "Count": 20,
+    "CategoryId": 1,
+    "Id": 3,
+    "CreatedAt": "2023-02-16T13:35:34.7829544+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Asus ROG Strix",
+    "Description": "Powerfull and best laptop",
+    "SearchTags": [
+      "laptop",
+      "pc",
+      "gaming",
+      "coding",
+      ""
+    ],
+    "Price": 2400.0,
+    "Count": 1,
+    "CategoryId": 2,
+    "Id": 4,
+    "CreatedAt": "2023-02-16T13:37:36.4120579+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "MacBook",
+    "Description": "The best laptop in the world!",
+    "SearchTags": [
+      "apple",
+      "laptop",
+      "pc",
+      "gaming",
+      "coding"
+    ],
+    "Price": 2300.0,
+    "Count": 4,
+    "CategoryId": 0,
+    "Id": 5,
+    "CreatedAt": "2023-02-16T13:38:39.3463089+05:00",
+    "UpdatedAt": "2023-02-16T13:44:05.0926325+05:00"
+  },
+  {
+    "Name": "Chevrolet Nexia 3",
+    "Description": "Popular car",
+    "SearchTags": [
+      "car",
+      "automobile",
+      "avtomobil",
+      "moshina"
+    ],
+    "Price": 12000.0,
+    "Count": 3,
+    "CategoryId": 3,
+    "Id": 6,
+    "CreatedAt": "2023-02-16T13:40:17.9195411+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "Name": "Chevrolet Spark",
+    "Description": "Little car",
+    "SearchTags": [
+      "car",
+      "automobile",
+      "avtomobil",
+      "moshina"
+    ],
+    "Price": 8000.0,
+    "Count": 2,
+    "CategoryId": 0,
+    "Id": 7,
+    "CreatedAt": "2023-02-16T13:41:01.4424932+05:00",
+    "UpdatedAt": "2023-02-16T13:44:05.1119876+05:00"
+  }
+]
