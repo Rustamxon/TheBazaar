@@ -1,1 +1,24 @@
+<<<<<<< HEAD
 []
+=======
+[
+  {
+    "UserId": 15,
+    "QuestionText": "awndjawndjawdnawjd",
+    "AnswerText": null,
+    "Progress": 10,
+    "Id": 1,
+    "CreatedAt": "2023-02-16T11:29:21.4913089+05:00",
+    "UpdatedAt": null
+  },
+  {
+    "UserId": 16,
+    "QuestionText": "dawdwakdaw",
+    "AnswerText": null,
+    "Progress": 10,
+    "Id": 2,
+    "CreatedAt": "2023-02-16T11:30:15.6873371+05:00",
+    "UpdatedAt": null
+  }
+]
+>>>>>>> f66be059ffd2b63c5df71152961c8fc826659d9c
